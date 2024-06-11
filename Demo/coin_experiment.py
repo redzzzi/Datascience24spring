@@ -25,3 +25,20 @@ head_counts = pd.DataFrame({'Head Counts': head_counts})
 head_counts['test statistic'] = abs(head_counts['Head Counts'] - 1000)
 
 print(head_counts)
+
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+
+# coin_bins
+coin_bins = np.arange(0, 101, 5)
+
+ax=sns.histplot(data=head_counts, x="test statistic", bins=coin_bins, stat="percent", discrete=False)
+ax.set_ylim(-0.5, 17)
+ax.set_xlabel("|Number of Heads - 1000|")
+ax.set_ylabel("Percent")
+ax.set_title("Sample Coins = 2,000, Repetitions = 10,000")
+
+ax.plot([45, 45], [0, 16], color='gold', lw=4)
+plt.show()
